@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sooner</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        function upload() {
+            $.ajax({
+                url: 'https://api.imgur.com/3/image',
+                headers: {
+                    'Authorization': 'Client-ID 97cf5f8a8a95fd3'
+                },
+                type: 'POST',
+                data: {
+                    'type': 'base64',
+                    'image': '{{ image }}'
+                },
+                success: function(result) {  window.location = result['data']['link']; }
+            });
+        }
+    </script>
+
+</head>
+<body>
+<img src="data:image/png;base64,{{ image }}">
+
+<button onclick="upload()">Upload to imgur</button>
+</body>
+</html>
